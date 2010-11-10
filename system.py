@@ -14,3 +14,7 @@ class File(object):
 	def initialize(self, name, extension):
 		self.name = name
 		self.extension = extension
+
+class FileInitializer(object):
+	def initialize_file(self, file):
+		file.initialize('initialized_name', 'initialized_extension')

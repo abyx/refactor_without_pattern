@@ -1,5 +1,5 @@
 import unittest
-from system import Directory, DirectoryInitializer, File
+from system import Directory, DirectoryInitializer, File, FileInitializer
 
 class DirectoryTest(unittest.TestCase):
 	def test_can_be_initialized(self):
@@ -24,3 +24,11 @@ class FileTest(unittest.TestCase):
 	def test_contains_parent_directory(self):
 		f = File('parent')
 		assert f.parent_directory == 'parent'
+
+class FileInitializerTest(unittest.TestCase):
+	def test_initializes_file(self):
+		f = File('parent')
+		initializer = FileInitializer()
+		initializer.initialize_file(f)
+		assert f.name == 'initialized_name'
+		assert f.extension == 'initialized_extension'
