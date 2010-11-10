@@ -1,5 +1,5 @@
 import unittest
-from system import Directory, DirectoryInitializer, File, FileInitializer
+from system import Directory, DirectoryInitializer, File, FileInitializer, ResourceInitializer
 
 class DirectoryTest(unittest.TestCase):
 	def test_can_be_initialized(self):
@@ -32,3 +32,29 @@ class FileInitializerTest(unittest.TestCase):
 		initializer.initialize(f)
 		assert f.name == 'initialized_name'
 		assert f.extension == 'initialized_extension'
+
+class DummyInitializer(object):
+	def initialize(self, resource):
+		self.called_with = resource
+
+class ResourceInitializerTest(unittest.TestCase):
+	def setUp(self):
+		self.file_initializer = DummyInitializer()
+		self.directory_initializer = DummyInitializer()
+		self.resource_initializer = ResourceInitializer(self.file_initializer, self.directory_initializer)
+
+	def test_initializes_file_using_file_initializer(self):
+		f = File('parent')
+		self.resource_initializer.initialize(f)
+		assert self.file_initializer.called_with == f
+
+	def test_initializes_a_files_directory(self):
+		f = File('parent')
+		self.resource_initializer.initialize(f)
+		assert self.directory_initializer.called_with == 'parent'
+
+	def test_initializes_a_directory_by_itself(self):
+		d = Directory()
+		self.resource_initializer.initialize(d)
+		assert self.directory_initializer.called_with == d
+		
