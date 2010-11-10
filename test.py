@@ -11,7 +11,7 @@ class DirectoryInitializerTest(unittest.TestCase):
 	def test_initializes_directory(self):
 		d = Directory()
 		initializer = DirectoryInitializer()
-		initializer.initialize_directory(d)
+		initializer.initialize(d)
 		assert d.path == 'initialized_path'
 
 class FileTest(unittest.TestCase):
@@ -29,6 +29,6 @@ class FileInitializerTest(unittest.TestCase):
 	def test_initializes_file(self):
 		f = File('parent')
 		initializer = FileInitializer()
-		initializer.initialize_file(f)
+		initializer.initialize(f)
 		assert f.name == 'initialized_name'
 		assert f.extension == 'initialized_extension'

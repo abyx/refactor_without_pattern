@@ -3,7 +3,7 @@ class Directory(object):
 		self.path = path
 
 class DirectoryInitializer(object):
-	def initialize_directory(self, directory):
+	def initialize(self, directory):
 		# Here some system logic happens to get a valid path
 		directory.initialize('initialized_path')
 
@@ -16,5 +16,6 @@ class File(object):
 		self.extension = extension
 
 class FileInitializer(object):
-	def initialize_file(self, file):
+	def initialize(self, file):
+		# Here some system logic happens to get valid file names & exts.
 		file.initialize('initialized_name', 'initialized_extension')
