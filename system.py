@@ -8,6 +8,9 @@ class DirectoryInitializer(object):
 		directory.initialize('initialized_path')
 
 class File(object):
+	def __init__(self, parent_directory):
+		self.parent_directory = parent_directory
+
 	def initialize(self, name, extension):
 		self.name = name
 		self.extension = extension

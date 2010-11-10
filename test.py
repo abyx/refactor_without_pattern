@@ -16,8 +16,11 @@ class DirectoryInitializerTest(unittest.TestCase):
 
 class FileTest(unittest.TestCase):
 	def test_can_be_initialized(self):
-		f = File()
+		f = File('parent')
 		f.initialize('name', 'extension')
 		assert f.name == 'name'
 		assert f.extension == 'extension'
 		
+	def test_contains_parent_directory(self):
+		f = File('parent')
+		assert f.parent_directory == 'parent'
